@@ -11,6 +11,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'jremmen/vim-ripgrep'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
+Plug 'lotabout/skim'
+Plug 'lotabout/skim.vim'
 call plug#end()
 
 
