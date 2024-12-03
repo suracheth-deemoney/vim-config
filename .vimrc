@@ -21,8 +21,8 @@ let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 
-set background=dark
-let ayucolor="dark"   " for dark version of theme
+set background=light
+let ayucolor="light"   " for dark version of theme
 colorscheme ayu
 
 set number
