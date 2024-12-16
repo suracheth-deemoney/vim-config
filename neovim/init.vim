@@ -2,6 +2,7 @@ set number
 lua << EOF
 require("config.lazy")
 require("lualine").setup({options = {theme = 'tokyonight'}})
+require("Comment").setup()
 EOF
 
 colorscheme tokyonight
