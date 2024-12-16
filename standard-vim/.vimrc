@@ -20,6 +20,7 @@ call plug#end()
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
+set cmdheight=3
 
 set background=light
 let ayucolor="light"   " for dark version of theme
@@ -53,6 +54,12 @@ function! s:on_lsp_buffer_enabled() abort
     nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
     let g:lsp_format_sync_timeout = 1000
+    let g:lsp_diagnostics_echo_delay = 500
+    let g:lsp_diagnostics_virtual_text_enabled = 0
+    let g:lsp_diagnostics_highlights_enabled = 0
+    let g:lsp_diagnostics_signs_enabled = 1
+    let g:lsp_diagnostics_echo_cursor = 1
+    let g:lsp_diagnostics_float_cursor = 0
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
 
     " refer to doc to add more commands

@@ -1,10 +1,5 @@
-## Setup
+## Vim and Neovim Configuration Repository
+This repository maintains professional configurations for both Vim and Neovim editors.
 
-1. Install vim plug.
-
-```
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```
-
-2. run :PlugInstall to install all plugins
+## Documentation
+Please refer to standard-vim/README.md and neovim/README.md for implementation instructions regarding Vim and Neovim configurations respectively.
