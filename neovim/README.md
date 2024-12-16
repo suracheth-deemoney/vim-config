@@ -1,6 +1,7 @@
 ## Setup 
-1. create a symbolic link from `$HOME/.config/nvim/init.vim` to `init.vim` with the below command 
+1. create symbolic links to `init.vim` and `lua` folder 
 
 ```bash
 ln -s $PWD/init.vim $HOME/.config/nvim/init.vim 
+ln -s $PWD/lua $HOME/.config/nvim/lua
 ```
