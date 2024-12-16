@@ -29,8 +29,8 @@ require("lazy").setup({
     {"nvim-lualine/lualine.nvim", opts = {}},
     {"nvim-telescope/telescope.nvim", opts = {dependencies = { "nvim-lua/plenary.nvim" }}},
     {"nvim-treesitter/nvim-treesitter", opts = {build = ":TSUpdate"}},
-    {"numToStr/Comment.nvim", opts = {}}
-
+    {"numToStr/Comment.nvim", opts = {}},
+    {"lambdalisue/vim-fern"}
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.

@@ -1,4 +1,5 @@
 set number
+set wrap!
 lua << EOF
 require("config.lazy")
 require("lualine").setup({options = {theme = 'tokyonight'}})
@@ -16,4 +17,7 @@ nnoremap <leader>ff <cmd> Telescope find_files<cr>
 nnoremap <leader>fg <cmd> Telescope live_grep<cr>
 nnoremap <leader>fb <cmd> Telescope buffers<cr>
 nnoremap <leader>fh <cmd> Telescope help_tags<cr>
+
+" Fern config
+nnoremap <leader>t <cmd> Fern .<cr>
 
