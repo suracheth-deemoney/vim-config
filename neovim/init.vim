@@ -3,6 +3,7 @@ lua << EOF
 require("config.lazy")
 require("lualine").setup({options = {theme = 'tokyonight'}})
 require("Comment").setup()
+require("nvim-treesitter.configs").setup({highlight = {enable = true}, indent = {enable = true, auto_install = true}})
 EOF
 
 colorscheme tokyonight
