@@ -53,4 +53,4 @@ nnoremap <leader>t <cmd> Fern .<cr>
 
 set number
 set wrap!
-
+set background=dark
