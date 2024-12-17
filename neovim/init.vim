@@ -1,3 +1,5 @@
+set nowrap
+set number
 " Set Leader key
 let mapleader = ","
 let g:coq_settings = { 'auto_start': v:true }
@@ -19,6 +21,7 @@ require('gitsigns').setup()
 local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    require("lsp-format").on_attach(client, bufnr)
 
     -- Mappings
     local bufopts = { noremap=true, silent=true, buffer=bufnr }
@@ -39,6 +42,7 @@ end
 require("lspconfig").elixirls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach}))
 require("lspconfig").terraformls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach}))
 require("lspconfig").rust_analyzer.setup(coq.lsp_ensure_capabilities({on_attach = on_attach}))
+require("lspconfig").html.setup(coq.lsp_ensure_capabilities({on_attach = on_attach}))
 
 EOF
 
@@ -55,4 +59,3 @@ nnoremap <leader>fh <cmd> Telescope help_tags<cr>
 nnoremap <leader>t <cmd> Fern .<cr>
 
 set background=dark
-set nowrap
