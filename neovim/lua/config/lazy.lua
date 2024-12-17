@@ -24,7 +24,13 @@ require("lazy").setup({
     {"nvim-telescope/telescope.nvim", opts = {dependencies = { "nvim-lua/plenary.nvim" }}},
     {"nvim-treesitter/nvim-treesitter", opts = {build = ":TSUpdate"}},
     {"numToStr/Comment.nvim", opts = {}},
-    {"lambdalisue/vim-fern"}
+    {"lambdalisue/vim-fern"},
+    {"neovim/nvim-lspconfig"},
+    {"williamboman/mason.nvim"},
+    {"williamboman/mason-lspconfig.nvim"},
+    {"hrsh7th/cmp-nvim-lsp"},
+    {"hrsh7th/nvim-cmp"},
+    {"ms-jpq/coq_nvim"}
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
