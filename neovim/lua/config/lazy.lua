@@ -30,7 +30,9 @@ require("lazy").setup({
     {"williamboman/mason-lspconfig.nvim"},
     {"hrsh7th/cmp-nvim-lsp"},
     {"hrsh7th/nvim-cmp"},
-    {"ms-jpq/coq_nvim"}
+    {"ms-jpq/coq_nvim"},
+    {"tpope/vim-fugitive"},
+    {"lewis6991/gitsigns.nvim"}
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.

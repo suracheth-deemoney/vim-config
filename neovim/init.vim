@@ -14,6 +14,8 @@ local coq = require('coq')
 require("mason").setup()
 require("mason-lspconfig").setup()
 
+require('gitsigns').setup()
+
 local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -52,6 +54,5 @@ nnoremap <leader>fh <cmd> Telescope help_tags<cr>
 " Fern config
 nnoremap <leader>t <cmd> Fern .<cr>
 
-set number
-set wrap!
 set background=dark
+set nowrap
