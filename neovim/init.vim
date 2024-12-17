@@ -35,6 +35,7 @@ end
 -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require("lspconfig").elixirls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach}))
+require("lspconfig").terraformls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach}))
 
 EOF
 
