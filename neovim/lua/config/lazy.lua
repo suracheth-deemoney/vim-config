@@ -15,18 +15,12 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
     -- import your plugins
     {"folke/tokyonight.nvim", opts = {}},
-    {"nvim-lualine/lualine.nvim", opts = {}},
+    {"nvim-lualine/lualine.nvim", dependencies = { 'nvim-tree/nvim-web-devicons' }},
     {"nvim-telescope/telescope.nvim", opts = {dependencies = { "nvim-lua/plenary.nvim" }}},
     {"nvim-treesitter/nvim-treesitter", opts = {build = ":TSUpdate"}},
     {"numToStr/Comment.nvim", opts = {}},
