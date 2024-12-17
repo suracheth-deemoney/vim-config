@@ -36,6 +36,7 @@ end
 
 require("lspconfig").elixirls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach}))
 require("lspconfig").terraformls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach}))
+require("lspconfig").rust_analyzer.setup(coq.lsp_ensure_capabilities({on_attach = on_attach}))
 
 EOF
 
