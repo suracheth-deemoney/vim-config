@@ -46,7 +46,8 @@ require("lspconfig").html.setup(coq.lsp_ensure_capabilities({on_attach = on_atta
 
 EOF
 
-colorscheme tokyonight
+set background=light
+colorscheme tokyonight-day
 
 
 " File files using telescope command-line sugar
@@ -57,5 +58,3 @@ nnoremap <leader>fh <cmd> Telescope help_tags<cr>
 
 " Fern config
 nnoremap <leader>t <cmd> Fern .<cr>
-
-set background=dark
