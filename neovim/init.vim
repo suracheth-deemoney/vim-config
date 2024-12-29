@@ -34,17 +34,18 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+    vim.keymap.set('n', 'ca', vim.lsp.buf.code_action, bufopts)
 end
 
 -- Configure servers
--- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-require("lspconfig").elixirls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach}))
-require("lspconfig").terraformls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach}))
-require("lspconfig").rust_analyzer.setup(coq.lsp_ensure_capabilities({on_attach = on_attach}))
-require("lspconfig").html.setup(coq.lsp_ensure_capabilities({on_attach = on_attach}))
-require("lspconfig").lua_ls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach}))
-require("lspconfig").custom_elements_ls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach}))
+require("lspconfig").elixirls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
+require("lspconfig").terraformls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
+require("lspconfig").rust_analyzer.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
+require("lspconfig").html.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
+require("lspconfig").lua_ls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
+require("lspconfig").custom_elements_ls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
 
 EOF
 
