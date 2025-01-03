@@ -60,4 +60,4 @@ nnoremap <leader>fb <cmd> Telescope buffers<cr>
 nnoremap <leader>fh <cmd> Telescope help_tags<cr>
 
 " Fern config
-nnoremap <leader>t <cmd> Fern .<cr>
+nnoremap <leader>t <cmd> Fern . -drawer -toggle<cr>
