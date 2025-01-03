@@ -10,6 +10,17 @@ require("nvim-treesitter.configs").setup({highlight = {enable = true}, indent = 
 require("lualine").setup({options = {icons_enabled = true, theme = 'tokyonight'}})
 
 -- LSP Setup
+-- Configure Telescope
+require('telescope').setup({pickers = {
+    find_files = {
+      hidden = true,
+      respect_gitignore = false,
+      file_ignore_patterns = {
+       "^.git/",
+       "node_modules/.*"
+      }
+    }
+  }})
 local lspconfig = require('lspconfig')
 
 local coq = require('coq')
@@ -46,7 +57,6 @@ require("lspconfig").rust_analyzer.setup(coq.lsp_ensure_capabilities({on_attach 
 require("lspconfig").html.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
 require("lspconfig").lua_ls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
 require("lspconfig").custom_elements_ls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
-
 EOF
 
 set background=light
@@ -60,4 +70,5 @@ nnoremap <leader>fb <cmd> Telescope buffers<cr>
 nnoremap <leader>fh <cmd> Telescope help_tags<cr>
 
 " Fern config
+let g:fern#default_hidden=1
 nnoremap <leader>t <cmd> Fern . -drawer -toggle<cr>
