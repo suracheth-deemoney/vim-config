@@ -7,7 +7,7 @@ lua << EOF
 require("config.lazy")
 require("Comment").setup()
 require("nvim-treesitter.configs").setup({highlight = {enable = true}, indent = {enable = true, auto_install = true}})
-require("lualine").setup({options = {icons_enabled = true, theme = 'tokyonight'}})
+require("lualine").setup({options = {icons_enabled = true, theme = 'tender'}})
 
 -- LSP Setup
 -- Configure Telescope
@@ -59,8 +59,8 @@ require("lspconfig").lua_ls.setup(coq.lsp_ensure_capabilities({on_attach = on_at
 require("lspconfig").custom_elements_ls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
 EOF
 
-set background=light
-colorscheme tokyonight-day
+set background=dark
+colorscheme tender
 
 
 " File files using telescope command-line sugar
