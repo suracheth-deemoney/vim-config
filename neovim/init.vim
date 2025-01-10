@@ -7,7 +7,7 @@ lua << EOF
 require("config.lazy")
 require("Comment").setup()
 require("nvim-treesitter.configs").setup({highlight = {enable = true}, indent = {enable = true, auto_install = true}})
-require("lualine").setup({options = {icons_enabled = true, theme = 'tender'}})
+require("lualine").setup({options = {icons_enabled = true}})
 
 -- LSP Setup
 -- Configure Telescope
