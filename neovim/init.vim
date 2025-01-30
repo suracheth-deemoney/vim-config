@@ -1,5 +1,7 @@
 set nowrap
 set number
+" Search with Case Insensitive
+set ignorecase
 " Set Leader key
 let mapleader = ","
 let g:coq_settings = { 'auto_start': v:true }
