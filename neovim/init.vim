@@ -61,8 +61,8 @@ require("lspconfig").lua_ls.setup(coq.lsp_ensure_capabilities({on_attach = on_at
 require("lspconfig").custom_elements_ls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
 EOF
 
-set background=dark
-colorscheme tender
+set background=light
+colorscheme rose-pine
 
 
 " File files using telescope command-line sugar

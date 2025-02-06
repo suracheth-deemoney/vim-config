@@ -19,7 +19,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	spec = {
 		-- import your plugins
-		{ "folke/tokyonight.nvim",            opts = {} },
 		{ "nvim-lualine/lualine.nvim",        dependencies = { 'nvim-tree/nvim-web-devicons' } },
 		{ "nvim-telescope/telescope.nvim",    opts = { dependencies = { "nvim-lua/plenary.nvim" } } },
 		{ "nvim-treesitter/nvim-treesitter",  opts = { build = ":TSUpdate" } },
@@ -34,7 +33,7 @@ require("lazy").setup({
 		{ "tpope/vim-fugitive" },
 		{ "lewis6991/gitsigns.nvim" },
 		{ "lukas-reineke/lsp-format.nvim" },
-		{ "jacoborus/tender.vim" }
+		{ "rose-pine/neovim",                 name = "rose-pine" }
 
 	},
 	-- Configure any other settings here. See the documentation for more details.
