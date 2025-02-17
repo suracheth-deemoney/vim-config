@@ -8,7 +8,14 @@ let g:coq_settings = { 'auto_start': v:true }
 lua << EOF
 require("config.lazy")
 require("Comment").setup()
-require("nvim-treesitter.configs").setup({highlight = {enable = true}, indent = {enable = true, auto_install = true}})
+require("nvim-treesitter.configs").setup({
+    highlight = {enable = true},
+    indent = {enable = true },
+    auto_install = true,
+    matchup = {
+	    enable = true
+    }
+})
 require("lualine").setup({options = {icons_enabled = true}})
 
 -- LSP Setup
