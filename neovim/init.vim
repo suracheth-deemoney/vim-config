@@ -69,7 +69,7 @@ require("lspconfig").custom_elements_ls.setup(coq.lsp_ensure_capabilities({on_at
 EOF
 
 set background=light
-colorscheme rose-pine
+colorscheme tokyonight-day
 
 
 " File files using telescope command-line sugar
