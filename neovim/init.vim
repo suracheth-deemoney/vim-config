@@ -81,3 +81,9 @@ nnoremap <leader>fh <cmd> Telescope help_tags<cr>
 " Fern config
 let g:fern#default_hidden=1
 nnoremap <leader>t <cmd> Fern . -drawer -toggle<cr>
+
+" Enable Spellchecks
+set spell
+set spelllang=en_us
+" Highlight bad spelling
+hi SpellBad cterm=underline gui=undercurl
