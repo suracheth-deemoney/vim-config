@@ -33,10 +33,9 @@ require("lazy").setup({
 		{ "tpope/vim-fugitive" },
 		{ "lewis6991/gitsigns.nvim" },
 		{ "lukas-reineke/lsp-format.nvim" },
-		{ "rose-pine/neovim",                 name = "rose-pine" },
 		{ "andymass/vim-matchup"},
 		{ "chentoast/marks.nvim", event = "VeryLazy", opts = {}},
-		{ "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {}}
+		{ "EdenEast/nightfox.nvim" }
 
 	},
 	-- Configure any other settings here. See the documentation for more details.

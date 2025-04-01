@@ -7,6 +7,10 @@ let mapleader = ","
 let g:coq_settings = { 'auto_start': v:true }
 lua << EOF
 require("config.lazy")
+EOF
+
+colorscheme dayfox
+lua << EOF
 require("Comment").setup()
 require("nvim-treesitter.configs").setup({
     highlight = {enable = true},
@@ -16,7 +20,6 @@ require("nvim-treesitter.configs").setup({
 	    enable = true
     }
 })
-require("lualine").setup({options = {icons_enabled = true}})
 
 -- LSP Setup
 -- Configure Telescope
@@ -66,11 +69,28 @@ require("lspconfig").rust_analyzer.setup(coq.lsp_ensure_capabilities({on_attach 
 require("lspconfig").html.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
 require("lspconfig").lua_ls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
 require("lspconfig").custom_elements_ls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
+require("lualine").setup({ sections = {
+    lualine_a = {'mode', {
+      'lsp_status',
+      icon = '', -- f013
+      symbols = {
+        -- Standard unicode symbols to cycle through for LSP progress:
+        spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+        -- Standard unicode symbol for when LSP is done:
+        done = '✓',
+        -- Delimiter inserted between LSP names:
+        separator = ' ',
+      },
+      -- List of LSP names to ignore (e.g., `null-ls`):
+      ignore_lsp = {},
+    } },
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  }, options = {icons_enabled = true}})
 EOF
-
-set background=light
-colorscheme tokyonight-day
-
 
 " File files using telescope command-line sugar
 nnoremap <leader>ff <cmd> Telescope find_files<cr>
