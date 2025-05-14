@@ -35,8 +35,8 @@ require("lazy").setup({
 		{ "lukas-reineke/lsp-format.nvim" },
 		{ "andymass/vim-matchup"},
 		{ "chentoast/marks.nvim", event = "VeryLazy", opts = {}},
-		{ "EdenEast/nightfox.nvim" }
-
+		{ "EdenEast/nightfox.nvim" }, 
+		{ "vague2k/vague.nvim" }
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.

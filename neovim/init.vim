@@ -9,7 +9,7 @@ lua << EOF
 require("config.lazy")
 EOF
 
-colorscheme dayfox
+colorscheme vague
 lua << EOF
 require("Comment").setup()
 require("nvim-treesitter.configs").setup({
