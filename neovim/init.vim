@@ -90,6 +90,10 @@ require("lualine").setup({ sections = {
     lualine_y = {'progress'},
     lualine_z = {'location'}
   }, options = {icons_enabled = true}})
+
+require("mason-lock").setup({
+  lockfile_path = vim.fn.stdpath("config") .. "/mason-lock.json" -- (default)
+}) 
 EOF
 
 " File files using telescope command-line sugar
