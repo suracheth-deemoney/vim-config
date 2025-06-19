@@ -41,6 +41,10 @@ require("lazy").setup({
     { "vague2k/vague.nvim" },
     { "zapling/mason-lock.nvim" },
 
+    -- Elixir-specific plugins
+    { "elixir-editors/vim-elixir" },
+    { "mhinz/vim-mix-format" },
+    
     -- Avante
     {
       "yetone/avante.nvim",

@@ -63,7 +63,40 @@ end
 -- Configure servers
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-require("lspconfig").elixirls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
+-- Enhanced Elixir LSP Configuration
+require("lspconfig").elixirls.setup(coq.lsp_ensure_capabilities({
+  cmd = { "elixir-ls" },
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    elixirLS = {
+      -- Enable dialyzer for better type checking
+      dialyzerEnabled = true,
+      -- Enable fetching deps when source changes
+      fetchDeps = true,
+      -- Enable automatic suggestion of @spec
+      suggestSpecs = true,
+      -- Enable formatting
+      enableTestLenses = true,
+      -- Set the formatter (can be "mix_format" or "prettier")
+      mixFormatEnabled = true,
+      -- -- Set project root patterns
+      -- projectDir = ".",
+      -- Additional settings for better performance
+      incrementalDialyzer = true,
+      -- Enable signature help
+      signatureAfterComplete = true,
+    }
+  },
+  root_dir = require('lspconfig').util.root_pattern("mix.exs", ".git"),
+  -- Add specific filetypes
+  filetypes = { "elixir", "eelixir", "heex", "surface" },
+  -- Custom initialization options
+  init_options = {
+    -- Skip dialyzer for faster startup (can be enabled per project)
+    skipDialyzer = false,
+  },
+}))
 require("lspconfig").terraformls.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
 require("lspconfig").rust_analyzer.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
 require("lspconfig").html.setup(coq.lsp_ensure_capabilities({on_attach = on_attach, capabilities = capabilities}))
