@@ -52,7 +52,7 @@ require("lazy").setup({
       ---@type avante.Config
       opts = {
         -- add any opts here
-        provider = "openai",
+        provider = "claude",
       },
       dependencies = {
         "nvim-treesitter/nvim-treesitter",
