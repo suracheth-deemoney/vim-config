@@ -55,8 +55,14 @@ require("lazy").setup({
       ---@module 'avante'
       ---@type avante.Config
       opts = {
-        -- add any opts here
-        provider = "claude",
+      -- add any opts here
+        provider = os.getenv("AVANTE_PROVIDER"),
+        providers = {
+          ollama = {
+            endpoint = "http://localhost:11434",
+            model = "phi3",
+          },
+        }
       },
       dependencies = {
         "nvim-treesitter/nvim-treesitter",
