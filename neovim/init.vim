@@ -139,6 +139,13 @@ nnoremap <leader>fh <cmd> Telescope help_tags<cr>
 let g:fern#default_hidden=1
 nnoremap <leader>t <cmd> Fern . -drawer -toggle<cr>
 
+" JavaScript indentation settings
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd FileType javascriptreact setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd FileType typescriptreact setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd FileType json setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+
 " Enable Spellchecks
 set spell
 set spelllang=en_us
