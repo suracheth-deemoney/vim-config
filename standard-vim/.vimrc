@@ -43,14 +43,11 @@ if executable('rust-analyzer')
 endif
 
 " Enable asyncomplete with LSP integration
-augroup asyncomplete_lsp
-    autocmd!
-    autocmd User lsp_setup call asyncomplete#register_source(asyncomplete#sources#lsp#get_source_options({
-        \ 'name': 'lsp',
-        \ 'whitelist': ['rust'],
-        \ 'completor': function('asyncomplete#sources#lsp#completor')
-        \ }))
-augroup END
+call asyncomplete#register_source(asyncomplete#sources#lsp#get_source_options({
+    \ 'name': 'lsp',
+    \ 'whitelist': ['rust'],
+    \ 'completor': function('asyncomplete#sources#lsp#completor')
+    \ }))
 
 " LSP key mappings - using leader key (,) for consistency
 nnoremap <leader>gd :LspDefinition<CR>      " Go to definition
