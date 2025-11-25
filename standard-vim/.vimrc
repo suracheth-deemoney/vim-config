@@ -2,6 +2,8 @@
 set number
 " Show relative line numbers from cursor position
 set relativenumber
+" Disable text wrapping
+set nowrap
 
 " Set Leader key to match neovim configuration
 let mapleader = ","
