@@ -43,3 +43,7 @@ nnoremap <leader>gi :LspImplementation<CR>  " Go to implementation
 nnoremap <leader>K :LspHover<CR>            " Show hover documentation
 nnoremap <leader>rn :LspRename<CR>          " Rename symbol
 nnoremap <leader>ca :LspCodeAction<CR>      " Show code actions
+
+" Auto-formatting configuration for Rust
+" Enable automatic rustfmt on save for Rust files
+let g:rustfmt_autosave = 1
