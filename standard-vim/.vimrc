@@ -11,6 +11,10 @@ call plug#begin()
 " Add plugins here
 " File explorer plugin - fern for file navigation
 Plug 'lambdalisue/vim-fern'
+" LSP support for Vim 8+ - provides Language Server Protocol support
+Plug 'prabirshrestha/vim-lsp'
+" Rust language support - enhanced syntax highlighting, rustfmt integration, and Rust-specific commands
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 " Fern configuration
@@ -20,3 +24,22 @@ let g:fern#default_hidden=1
 " Key bindings for fern
 " Toggle fern file explorer drawer with leader+t
 nnoremap <leader>t :Fern . -drawer -toggle<cr>
+
+" LSP configuration for rust-analyzer
+" Checks if rust-analyzer is executable before registering the server
+if executable('rust-analyzer')
+    " Register rust-analyzer as LSP server for Rust files
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rust-analyzer',                    " Server name for identification
+        \ 'cmd': {server_info->['rust-analyzer']},    " Command to start the server
+        \ 'whitelist': ['rust'],                       " Only activate for Rust files
+        \ })
+endif
+
+" LSP key mappings - using leader key (,) for consistency
+nnoremap <leader>gd :LspDefinition<CR>      " Go to definition
+nnoremap <leader>gr :LspReferences<CR>      " Show references
+nnoremap <leader>gi :LspImplementation<CR>  " Go to implementation
+nnoremap <leader>K :LspHover<CR>            " Show hover documentation
+nnoremap <leader>rn :LspRename<CR>          " Rename symbol
+nnoremap <leader>ca :LspCodeAction<CR>      " Show code actions
