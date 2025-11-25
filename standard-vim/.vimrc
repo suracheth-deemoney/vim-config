@@ -30,9 +30,9 @@ nnoremap <leader>t :Fern . -drawer -toggle<cr>
 if executable('rust-analyzer')
     " Register rust-analyzer as LSP server for Rust files
     au User lsp_setup call lsp#register_server({
-        \ 'name': 'rust-analyzer',                    " Server name for identification
-        \ 'cmd': {server_info->['rust-analyzer']},    " Command to start the server
-        \ 'whitelist': ['rust'],                       " Only activate for Rust files
+        \ 'name': 'rust-analyzer',
+        \ 'cmd': {server_info->['rust-analyzer']},
+        \ 'whitelist': ['rust'],
         \ })
 endif
 
