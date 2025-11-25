@@ -27,6 +27,7 @@ require("lazy").setup({
     { "numToStr/Comment.nvim", opts = {} },
     { "lambdalisue/vim-fern" },
     { "neovim/nvim-lspconfig" },
+    {"stevearc/conform.nvim"},
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
     { "hrsh7th/cmp-nvim-lsp" },
