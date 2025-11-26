@@ -27,6 +27,10 @@ Plug 'rust-lang/rust.vim'
 Plug 'elixir-editors/vim-elixir'
 " Git gutter - shows git changes in the sign column
 Plug 'airblade/vim-gitgutter'
+" Git integration - fugitive for git commands inside vim
+Plug 'tpope/vim-fugitive'
+" Git integration - gitv for git log viewer
+Plug 'gregsexton/gitv'
 " Fuzzy finder with ripgrep integration
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -196,6 +200,14 @@ let g:gitgutter_sign_modified_removed = '▎'
 autocmd VimEnter * GitGutterAll
 autocmd BufEnter * GitGutter
 
+" Git integration configuration
+" Enable fugitive commands
+let g:fugitive_git_executable = 'git'
+" Open git status in vertical split
+command! Gstatus vertical Git status
+" Show git commit in vertical split
+command! Gcommit vertical Git commit
+
 " FZF fuzzy finder key mappings
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>
@@ -204,6 +216,23 @@ nnoremap <leader>rg :Rg<Space>
 nnoremap <leader>l :Lines<CR>
 nnoremap <leader>c :Commands<CR>
 nnoremap <leader>h :History<CR>
+
+" Git integration key mappings
+nnoremap <leader>gs :Git<CR>                " Open git status
+nnoremap <leader>gc :Git commit<CR>         " Git commit
+nnoremap <leader>gca :Git commit --amend<CR> " Git commit amend
+nnoremap <leader>gp :Git push<CR>           " Git push
+nnoremap <leader>gpl :Git pull<CR>          " Git pull
+nnoremap <leader>ga :Git add %<CR>          " Git add current file
+nnoremap <leader>gaa :Git add .<CR>         " Git add all files
+nnoremap <leader>gd :Git diff<CR>           " Git diff
+nnoremap <leader>gds :Git diff --staged<CR> " Git diff staged
+nnoremap <leader>gb :Git blame<CR>          " Git blame
+nnoremap <leader>gl :Git log<CR>            " Git log
+nnoremap <leader>gv :Gitv<CR>               " Git log viewer
+nnoremap <leader>gsh :Git stash<CR>         " Git stash
+nnoremap <leader>gsp :Git stash pop<CR>     " Git stash pop
+nnoremap <leader>gr :Git remove %<CR>       " Git remove current file
 
 " FZF configuration
 " Use ripgrep for file searching if available
