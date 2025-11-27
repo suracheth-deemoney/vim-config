@@ -19,8 +19,7 @@ call plug#begin()
 " Add plugins here
 " File explorer plugin - fern for file navigation
 Plug 'lambdalisue/vim-fern'
-" LSP support for Vim 8+ - provides Language Server Protocol support
-Plug 'prabirshrestha/vim-lsp'
+
 " Rust language support - enhanced syntax highlighting, rustfmt integration, and Rust-specific commands
 Plug 'rust-lang/rust.vim'
 " Elixir language support - syntax highlighting, filetype detection, and indentation for all Elixir file types
@@ -38,121 +37,110 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Gruvbox Material theme - modern take on gruvbox with light and dark variants
 Plug 'sainnhe/gruvbox-material'
-" Async completion framework for Vim 8+
-Plug 'prabirshrestha/asyncomplete.vim'
-" LSP integration for asyncomplete
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
+ " Coc autocompletion plugin
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Airline status line - enhanced status bar with many features
 Plug 'vim-airline/vim-airline'
 " Airline themes collection
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
+" Coc global extensions
+let g:coc_global_extensions = ['coc-rust-analyzer', 'coc-elixir']
+
 " Fern configuration
 " Show hidden files by default in fern
 let g:fern#default_hidden=1
 
-" Key bindings for fern
-" Toggle fern file explorer drawer with leader+t
-nnoremap <leader>t :Fern . -drawer -toggle<cr>
+ " Key bindings for fern
+ " Toggle fern file explorer drawer with leader+t
+ nnoremap <leader>t :Fern . -drawer -toggle<cr>
 
-" Function to get general LSP status for all servers
-function! GetLSPStatus()
-    let l:running_count = 0
-    let l:starting_count = 0
-    let l:total_count = 0
-    
-    " Check rust-analyzer
-    if executable('rust-analyzer')
-        let l:total_count += 1
-        try
-            let l:rust_status = lsp#get_server_status('rust-analyzer')
-            if l:rust_status ==# 'running'
-                let l:running_count += 1
-            elseif l:rust_status ==# 'starting'
-                let l:starting_count += 1
-            endif
-        catch
-        endtry
-    endif
-    
-    " Check elixir-ls
-    if executable('elixir-ls')
-        let l:total_count += 1
-        try
-            let l:elixir_status = lsp#get_server_status('elixir-ls')
-            if l:elixir_status ==# 'running'
-                let l:running_count += 1
-            elseif l:elixir_status ==# 'starting'
-                let l:starting_count += 1
-            endif
-        catch
-        endtry
-    endif
-    
-    if l:total_count == 0
-        return 'LSP: ✗'
-    elseif l:running_count > 0
-        return 'LSP: ✓ (' . l:running_count . '/' . l:total_count . ')'
-    elseif l:starting_count > 0
-        return 'LSP: ... (' . l:starting_count . '/' . l:total_count . ')'
-    else
-        return 'LSP: ✗'
-    endif
-endfunction
+ " Coc key mappings
+ inoremap <silent><expr> <TAB>
+       \ pumvisible() ? "\<C-n>" :
+       \ <SID>check_back_space() ? "\<TAB>" :
+       \ coc#refresh()
+ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" LSP configuration for rust-analyzer
-" Checks if rust-analyzer is executable before registering the server
-if executable('rust-analyzer')
-    " Register rust-analyzer as LSP server for Rust files
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'rust-analyzer',
-        \ 'cmd': {server_info->['rust-analyzer']},
-        \ 'whitelist': ['rust'],
-        \ })
-endif
+ function! s:check_back_space() abort
+   let col = col('.') - 1
+   return !col || getline('.')[col - 1]  =~# '\s'
+ endfunction
 
-" LSP configuration for elixir-ls
-" Checks if elixir-ls is executable before registering the server
-if executable('elixir-ls')
-    " Register elixir-ls as LSP server for Elixir files and templates
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'elixir-ls',
-        \ 'cmd': {server_info->['elixir-ls']},
-        \ 'whitelist': ['elixir', 'eelixir'],
-        \ })
-endif
+ inoremap <silent><expr> <c-space> coc#refresh()
 
-" Enable asyncomplete with LSP integration
-augroup asyncomplete_lsp
-    autocmd!
-    autocmd User lsp_setup call asyncomplete#register_source(asyncomplete#sources#lsp#get_source_options({
-        \ 'name': 'lsp',
-        \ 'whitelist': ['rust', 'elixir', 'eelixir'],
-        \ 'completor': function('asyncomplete#sources#lsp#completor')
-        \ }))
-augroup END
+ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" LSP key mappings - using leader key (,) for consistency
-nnoremap <leader>gd :LspDefinition<CR>      " Go to definition
-nnoremap <leader>gr :LspReferences<CR>      " Show references
-nnoremap <leader>gi :LspImplementation<CR>  " Go to implementation
-nnoremap <leader>K :LspHover<CR>            " Show hover documentation
-nnoremap <leader>rn :LspRename<CR>          " Rename symbol
-nnoremap <leader>ca :LspCodeAction<CR>      " Show code actions
+ nmap <silent> [g <Plug>(coc-diagnostic-prev)
+ nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+ nmap <silent> <leader>gd <Plug>(coc-definition)
+ nmap <silent> <leader>gy <Plug>(coc-type-definition)
+ nmap <silent> <leader>gi <Plug>(coc-implementation)
+ nmap <silent> <leader>gr :call CocReferencesQuickfix()<CR>
+ nmap <leader>rn <Plug>(coc-rename)
+
+ xmap <leader>a  <Plug>(coc-codeaction-selected)
+ nmap <leader>a  <Plug>(coc-codeaction)
+
+ nmap <leader>ac  <Plug>(coc-codeaction)
+ nmap <leader>qf  <Plug>(coc-fix-current)
+
+ nmap <silent> <leader>K :call <SID>show_documentation()<CR>
+
+ function! s:show_documentation()
+   if (index(['vim','help'], &filetype) >= 0)
+     execute 'h '.expand('<cword>')
+   elseif (coc#rpc#ready())
+     call CocActionAsync('doHover')
+   else
+     execute '!' . &keywordprg . " " . expand('<cword>')
+   endif
+ endfunction
+
+ function! CocReferencesQuickfix()
+   let refs = CocAction('references')
+   if !empty(refs)
+     let qf = []
+     for ref in refs
+       let filename = substitute(ref.uri, '^file://', '', '')
+       let lnum = ref.range.start.line + 1
+       let col = ref.range.start.character + 1
+       let text = ''
+       if filereadable(filename)
+         let lines = readfile(filename, '', lnum)
+         if len(lines) >= lnum
+           let text = lines[lnum - 1]
+         endif
+       endif
+       call add(qf, {'filename': filename, 'lnum': lnum, 'col': col, 'text': text})
+     endfor
+     call setqflist(qf)
+     copen
+   endif
+ endfunction
+
+ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 
 
 
 
-" LSP log and debugging commands
-nnoremap <leader>ll :tabnew ~/.vim/lsp.log<CR> " Show LSP logs in new tab
-nnoremap <leader>lt :let g:lsp_debug = !g:lsp_debug<Bar>echo "LSP debug: " . (g:lsp_debug ? "ON" : "OFF")<CR> " Toggle LSP debugging
-nnoremap <leader>ls :echo lsp#get_server_info('elixir-ls')<CR> " Show elixir-ls info
-nnoremap <leader>lS :echo lsp#get_server_info('rust-analyzer')<CR> " Show rust-analyzer info
 
-" Manual autocomplete trigger
-inoremap <C-space> <C-x><C-u>
+
+
+
+
+
+
+
+
+
+
+
+
 
 " Auto-formatting configuration for Rust
 " Enable automatic rustfmt on save for Rust files
@@ -231,14 +219,14 @@ nnoremap <leader>gp :Git push<CR>           " Git push
 nnoremap <leader>gpl :Git pull<CR>          " Git pull
 nnoremap <leader>ga :Git add %<CR>          " Git add current file
 nnoremap <leader>gaa :Git add .<CR>         " Git add all files
-nnoremap <leader>gd :Git diff<CR>           " Git diff
+ nnoremap <leader>gdf :Git diff<CR>           " Git diff
 nnoremap <leader>gds :Git diff --staged<CR> " Git diff staged
 nnoremap <leader>gb :Git blame<CR>          " Git blame
 nnoremap <leader>gl :Git log<CR>            " Git log
 nnoremap <leader>gv :Gitv<CR>               " Git log viewer
 nnoremap <leader>gsh :Git stash<CR>         " Git stash
 nnoremap <leader>gsp :Git stash pop<CR>     " Git stash pop
-nnoremap <leader>gr :Git remove %<CR>       " Git remove current file
+ nnoremap <leader>grm :Git remove %<CR>       " Git remove current file
 
 " FZF configuration
 " Use ripgrep for file searching if available
@@ -255,53 +243,21 @@ endif
 
 
 
-" Airline configuration
-" Enable airline status line
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'gruvbox_material'
-" Show airline in all windows
-let g:airline_statusline_ontop = 0
-" Enable gitgutter integration with airline
-let g:airline#extensions#gitgutter#enabled = 1
+ " Airline configuration
+ " Enable airline status line
+ let g:airline_powerline_fonts = 1
+ let g:airline_theme = 'gruvbox_material'
+ " Show airline in all windows
+ let g:airline_statusline_ontop = 0
+ " Enable gitgutter integration with airline
+ let g:airline#extensions#gitgutter#enabled = 1
+ " Enable coc integration with airline
+ let g:airline#extensions#coc#enabled = 1
 
-" LSP progress messages
-" Show LSP progress in command line
-let g:lsp_show_message = 1
-let g:lsp_show_message_format = '%d: %s'
 
-" Enable LSP progress reporting for airline
-let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_diagnostics_echo_delay = 500
 
-" LSP logging configuration
-let g:lsp_log_level = 'info'
-let g:lsp_log_file = expand('~/.vim/lsp.log')
-let g:lsp_debug = 1
 
-" Custom function to display LSP status for airline
-function! AirlineLSPStatus()
-    return GetLSPStatus()
-endfunction
 
-" Custom function to display LSP progress for airline
-function! AirlineLSPProgress()
-    if exists('g:lsp_progress') && !empty(g:lsp_progress)
-        return g:lsp_progress
-    endif
-    return ''
-endfunction
 
-" Add LSP status and progress to airline sections
-let g:airline_section_x = airline#section#create(['%{AirlineLSPStatus()}'])
-let g:airline_section_y = airline#section#create(['%{AirlineLSPProgress()}'])
 
-" Update LSP status and airline when LSP state changes
-augroup airline_lsp
-    autocmd!
-    autocmd User lsp_server_initialized call airline#update_statusline()
-    autocmd User lsp_server_exit call airline#update_statusline()
-    autocmd User lsp_diagnostics_updated call airline#update_statusline()
-    autocmd FileType * call airline#update_statusline()
-    autocmd BufEnter * call airline#update_statusline()
-    autocmd CursorHold,CursorHoldI call airline#update_statusline()
-augroup END
+
