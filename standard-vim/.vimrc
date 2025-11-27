@@ -25,6 +25,8 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'rust-lang/rust.vim'
 " Elixir language support - syntax highlighting, filetype detection, and indentation for all Elixir file types
 Plug 'elixir-editors/vim-elixir'
+" Elixir mix format integration - asynchronous formatting on save
+Plug 'mhinz/vim-mix-format'
 " Git gutter - shows git changes in the sign column
 Plug 'airblade/vim-gitgutter'
 " Git integration - fugitive for git commands inside vim
@@ -155,6 +157,10 @@ inoremap <C-space> <C-x><C-u>
 " Auto-formatting configuration for Rust
 " Enable automatic rustfmt on save for Rust files
 let g:rustfmt_autosave = 1
+
+" Auto-formatting configuration for Elixir
+" Enable automatic mix format on save for Elixir files
+let g:mix_format_on_save = 1
 
 
 
