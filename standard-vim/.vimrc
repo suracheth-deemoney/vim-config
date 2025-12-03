@@ -4,6 +4,8 @@ set number
 set relativenumber
 " Disable text wrapping
 set nowrap
+" Enable sign column for marks
+set signcolumn=yes
 
 " Use spaces instead of tabs
 set expandtab
@@ -43,6 +45,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
 " Airline themes collection
 Plug 'vim-airline/vim-airline-themes'
+" Show marks in sign column
+Plug 'kshenoy/vim-signature'
 call plug#end()
 
 " Coc global extensions
