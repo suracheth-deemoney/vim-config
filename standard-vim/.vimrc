@@ -28,6 +28,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'elixir-editors/vim-elixir'
 " Elixir mix format integration - asynchronous formatting on save
 Plug 'mhinz/vim-mix-format'
+" Markdown language support - syntax highlighting, folding, and markdown-specific commands
+Plug 'plasticboy/vim-markdown'
 " Git gutter - shows git changes in the sign column
 Plug 'airblade/vim-gitgutter'
 " Git integration - fugitive for git commands inside vim
@@ -61,10 +63,7 @@ let g:fern#default_hidden=1
  nnoremap <leader>t :Fern . -drawer -toggle<cr>
 
  " Coc key mappings
- inoremap <silent><expr> <TAB>
-       \ pumvisible() ? "\<C-n>" :
-       \ <SID>check_back_space() ? "\<TAB>" :
-       \ coc#refresh()
+  inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
  function! s:check_back_space() abort
@@ -74,8 +73,7 @@ let g:fern#default_hidden=1
 
  inoremap <silent><expr> <c-space> coc#refresh()
 
- inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
  nmap <silent> [g <Plug>(coc-diagnostic-prev)
  nmap <silent> ]g <Plug>(coc-diagnostic-next)
