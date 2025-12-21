@@ -52,7 +52,17 @@ Plug 'kshenoy/vim-signature'
 call plug#end()
 
 " Coc global extensions
-let g:coc_global_extensions = ['coc-rust-analyzer', 'coc-elixir']
+let g:coc_global_extensions = [
+  \ 'coc-rust-analyzer',
+  \ 'coc-elixir',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ 'coc-prettier',
+  \ 'coc-json',
+  \ 'coc-html',
+  \ 'coc-css',
+  \ 'coc-yaml'
+  \ ]
 
 " Fern configuration
 " Show hidden files by default in fern
@@ -86,9 +96,6 @@ let g:fern#default_hidden=1
 
  xmap <leader>a  <Plug>(coc-codeaction-selected)
  nmap <leader>a  <Plug>(coc-codeaction)
-
- nmap <leader>ac  <Plug>(coc-codeaction)
- nmap <leader>qf  <Plug>(coc-fix-current)
 
  nmap <silent> <leader>K :call <SID>show_documentation()<CR>
 
@@ -152,11 +159,42 @@ let g:rustfmt_autosave = 1
 " Enable automatic mix format on save for Elixir files
 let g:mix_format_on_save = 1
 
+" TypeScript/JavaScript specific configurations
+" Enable auto-formatting for TypeScript/JavaScript files
+autocmd FileType javascript,javascriptreact,typescript,typescriptreact setlocal formatexpr=CocAction('formatSelected')
+autocmd FileType javascript,javascriptreact,typescript,typescriptreact setlocal omnifunc=v:lua.vim.lsp.omnifunc
+
+" TypeScript/JavaScript key mappings
+" Format current file with prettier
+nnoremap <leader>pf :CocCommand prettier.formatFile<CR>
+" Format selected range with prettier
+xmap <leader>pf <Plug>(coc-format-selected)
+nmap <leader>pf <Plug>(coc-format-selected)
+" Organize imports in TypeScript/JavaScript
+nnoremap <leader>oi :CocCommand tsserver.organizeImports<CR>
+" Restart TypeScript server
+nnoremap <leader>trs :CocCommand tsserver.restart<CR>
+" Toggle ESLint auto-fix
+nnoremap <leader>ef :CocCommand eslint.toggleAutoFixOnSave<CR>
+
 
 
 " Completion settings
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
+
+" File type specific settings
+" JavaScript/TypeScript settings
+autocmd FileType javascript,javascriptreact,typescript,typescriptreact 
+  \ setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+  \ | setlocal commentstring=//%s
+
+" JSON settings
+autocmd FileType json setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+" HTML/CSS settings
+autocmd FileType html,css,scss,less 
+  \ setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 " Theme configuration
 " Enable true color support
