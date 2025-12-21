@@ -59,7 +59,17 @@ This configuration includes comprehensive TypeScript and JavaScript development 
 
 #### Setup
 1. Install Node.js and npm/yarn
-2. Copy `package.json.example` to your project and run `npm install`
+2. Set up your project with the provided template:
+   ```bash
+   # For new projects - copy the template
+   cp /path/to/vim-config/standard-vim/package.json.example ./package.json
+   
+   # Or create a symbolic link to always use the latest template
+   ln -s /path/to/vim-config/standard-vim/package.json.example ./package.json
+   
+   # Install dependencies
+   npm install
+   ```
 3. The coc extensions will be automatically installed:
    - `coc-tsserver` - TypeScript language server
    - `coc-eslint` - ESLint integration
