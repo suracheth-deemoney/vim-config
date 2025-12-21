@@ -39,8 +39,8 @@ Plug 'gregsexton/gitv'
 " Fuzzy finder with ripgrep integration
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" Gruvbox Material theme - modern take on gruvbox with light and dark variants
-Plug 'sainnhe/gruvbox-material'
+" Dracula theme - dark theme for Vim
+Plug 'dracula/vim', { 'as': 'dracula' }
  " Coc autocompletion plugin
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Airline status line - enhanced status bar with many features
@@ -164,15 +164,8 @@ if has('termguicolors')
     set termguicolors
 endif
 
-" Set gruvbox-material theme with light background
-let g:gruvbox_material_background = 'medium'
-let g:gruvbox_material_foreground = 'material'
-let g:gruvbox_material_enable_bold = 1
-let g:gruvbox_material_enable_italic = 1
-let g:gruvbox_material_transparent_background = 0
-
-" Apply the theme
-colorscheme gruvbox-material
+" Apply the dracula theme
+colorscheme dracula
 
 " Git gutter configuration
 " Enable git gutter by default
@@ -248,7 +241,7 @@ endif
  " Airline configuration
  " Enable airline status line
  let g:airline_powerline_fonts = 1
- let g:airline_theme = 'gruvbox_material'
+ let g:airline_theme = 'dracula'
  " Show airline in all windows
  let g:airline_statusline_ontop = 0
  " Enable gitgutter integration with airline
