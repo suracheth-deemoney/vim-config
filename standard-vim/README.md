@@ -18,3 +18,15 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ```vim
 :PlugInstall
 ```
+
+### Configuration Files
+
+Create symbolic links for configuration files:
+
+```bash
+# Link .vimrc
+ln -s $PWD/.vimrc ~/.vimrc
+
+# Link coc-settings.json for coc.nvim configuration
+ln -s $PWD/coc-settings.json ~/.vim/coc-settings.json
+```
