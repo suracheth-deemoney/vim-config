@@ -40,5 +40,8 @@
   "suggest.enablePreselect": true,
   "suggest.maxCompleteItemCount": 20,
   "suggest.triggerCompletionWait": 50,
-  "suggest.autoTrigger": "always"
+  "suggest.autoTrigger": "always",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
