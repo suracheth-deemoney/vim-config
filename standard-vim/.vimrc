@@ -36,6 +36,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 " Git integration - gitv for git log viewer
 Plug 'gregsexton/gitv'
+" Comment plugin - toggle comments with gcc/gc
+Plug 'tpope/vim-commentary'
 " Fuzzy finder with ripgrep integration
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -244,6 +246,11 @@ nnoremap <leader>l :Lines<CR>
 nnoremap <leader>c :Commands<CR>
 nnoremap <leader>h :History<CR>
 
+" Comment key mappings
+" Toggle comment for current line
+nnoremap <leader>cc :Commentary<CR>
+" Toggle comment for visual selection
+xnoremap <leader>cc :Commentary<CR>
 " Git integration key mappings
 nnoremap <leader>gs :Git<CR>                " Open git status
 nnoremap <leader>gc :Git commit<CR>         " Git commit
