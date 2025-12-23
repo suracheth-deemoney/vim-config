@@ -1,3 +1,5 @@
+" Enable mouse support
+set mouse=a
 " Show absolute line numbers
 set number
 " Show relative line numbers from cursor position
@@ -293,8 +295,11 @@ endif
  let g:airline_statusline_ontop = 0
  " Enable gitgutter integration with airline
  let g:airline#extensions#gitgutter#enabled = 1
- " Enable coc integration with airline
- let g:airline#extensions#coc#enabled = 1
+  " Enable coc integration with airline
+  let g:airline#extensions#coc#enabled = 1
+
+" Custom visual selection highlight
+hi Visual guibg=#bd93f9 guifg=#282a36 ctermbg=magenta ctermfg=black
 
 
 
