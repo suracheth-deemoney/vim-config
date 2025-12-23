@@ -21,6 +21,8 @@ call plug#begin()
 " Add plugins here
 " File explorer plugin - fern for file navigation
 Plug 'lambdalisue/vim-fern'
+" Wayland clipboard support
+Plug 'jasonccox/vim-wayland-clipboard'
 
 " Rust language support - enhanced syntax highlighting, rustfmt integration, and Rust-specific commands
 Plug 'rust-lang/rust.vim'
