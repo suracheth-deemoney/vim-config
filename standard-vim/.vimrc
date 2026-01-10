@@ -34,6 +34,7 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'mhinz/vim-mix-format'
 " Markdown language support - syntax highlighting, folding, and markdown-specific commands
 Plug 'plasticboy/vim-markdown'
+let g:vim_markdown_folding_disabled = 1
 " Git gutter - shows git changes in the sign column
 Plug 'airblade/vim-gitgutter'
 " Git integration - fugitive for git commands inside vim
@@ -300,7 +301,6 @@ endif
 
 " Custom visual selection highlight
 hi Visual guibg=#bd93f9 guifg=#282a36 ctermbg=magenta ctermfg=black
-
 
 
 
