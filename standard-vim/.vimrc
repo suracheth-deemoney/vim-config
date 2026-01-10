@@ -57,6 +57,9 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'kshenoy/vim-signature'
 call plug#end()
 
+" Markdown configuration
+let g:vim_markdown_folding_disabled = 1
+
 " Coc global extensions
 let g:coc_global_extensions = [
   \ 'coc-rust-analyzer',
@@ -300,8 +303,6 @@ endif
 
 " Custom visual selection highlight
 hi Visual guibg=#bd93f9 guifg=#282a36 ctermbg=magenta ctermfg=black
-
-
 
 
 
