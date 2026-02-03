@@ -2,8 +2,8 @@
 set mouse=a
 " Show absolute line numbers
 set number
-" Show relative line numbers from cursor position
-set relativenumber
+" Disable relative line numbers (show actual line numbers only)
+set norelativenumber
 " Disable text wrapping
 set nowrap
 " Enable sign column for marks
