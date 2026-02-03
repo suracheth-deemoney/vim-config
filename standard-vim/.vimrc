@@ -70,7 +70,8 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-html',
   \ 'coc-css',
-  \ 'coc-yaml'
+  \ 'coc-yaml',
+  \ 'coc-terraform'
   \ ]
 
 " Fern configuration
@@ -303,7 +304,6 @@ endif
 
 " Custom visual selection highlight
 hi Visual guibg=#bd93f9 guifg=#282a36 ctermbg=magenta ctermfg=black
-
 
 
 
