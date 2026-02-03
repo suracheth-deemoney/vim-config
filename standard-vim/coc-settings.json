@@ -26,7 +26,8 @@
     "css",
     "scss",
     "less",
-    "yaml"
+    "yaml",
+    "terraform"
   ],
   "diagnostic.enable": true,
   "diagnostic.displayByAle": false,
