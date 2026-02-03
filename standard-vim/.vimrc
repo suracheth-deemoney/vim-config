@@ -45,8 +45,8 @@ Plug 'tpope/vim-commentary'
 " Fuzzy finder with ripgrep integration
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" Dracula theme - dark theme for Vim
-Plug 'dracula/vim', { 'as': 'dracula' }
+" Catppuccin theme - bright pastel theme for Vim
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
  " Coc autocompletion plugin
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Airline status line - enhanced status bar with many features
@@ -212,8 +212,12 @@ if has('termguicolors')
     set termguicolors
 endif
 
-" Apply the dracula theme
-colorscheme dracula
+" Apply the catppuccin latte theme (bright variant)
+colorscheme catppuccin_latte
+
+" Fix black blank lines - match EndOfBuffer to background
+highlight EndOfBuffer guifg=#eff1f5 guibg=#eff1f5
+highlight NonText guifg=#ccd0da guibg=#eff1f5
 
 " Git gutter configuration
 " Enable git gutter by default
@@ -294,7 +298,7 @@ endif
  " Airline configuration
  " Enable airline status line
  let g:airline_powerline_fonts = 1
- let g:airline_theme = 'dracula'
+ let g:airline_theme = 'catppuccin_latte'
  " Show airline in all windows
  let g:airline_statusline_ontop = 0
  " Enable gitgutter integration with airline
@@ -302,8 +306,8 @@ endif
   " Enable coc integration with airline
   let g:airline#extensions#coc#enabled = 1
 
-" Custom visual selection highlight
-hi Visual guibg=#bd93f9 guifg=#282a36 ctermbg=magenta ctermfg=black
+" Custom visual selection highlight (catppuccin latte compatible)
+hi Visual guibg=#8839ef guifg=#eff1f5 ctermbg=magenta ctermfg=white
 
 
 
