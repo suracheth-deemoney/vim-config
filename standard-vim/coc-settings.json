@@ -1,5 +1,4 @@
 {
-  "elixir.pathToElixirLS": "~/.elixir-ls/language_server.sh",
   "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.suggest.autoImports": true,
   "typescript.updateImportsOnFileMove.enabled": "always",

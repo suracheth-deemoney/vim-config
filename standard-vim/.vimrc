@@ -28,10 +28,6 @@ Plug 'jasonccox/vim-wayland-clipboard'
 
 " Rust language support - enhanced syntax highlighting, rustfmt integration, and Rust-specific commands
 Plug 'rust-lang/rust.vim'
-" Elixir language support - syntax highlighting, filetype detection, and indentation for all Elixir file types
-Plug 'elixir-editors/vim-elixir'
-" Elixir mix format integration - asynchronous formatting on save
-Plug 'mhinz/vim-mix-format'
 " Markdown language support - syntax highlighting, folding, and markdown-specific commands
 Plug 'plasticboy/vim-markdown'
 " Git gutter - shows git changes in the sign column
@@ -63,7 +59,6 @@ let g:vim_markdown_folding_disabled = 1
 " Coc global extensions
 let g:coc_global_extensions = [
   \ 'coc-rust-analyzer',
-  \ 'coc-elixir',
   \ 'coc-tsserver',
   \ 'coc-eslint',
   \ 'coc-prettier',
@@ -164,10 +159,6 @@ let g:fern#default_hidden=1
 " Auto-formatting configuration for Rust
 " Enable automatic rustfmt on save for Rust files
 let g:rustfmt_autosave = 1
-
-" Auto-formatting configuration for Elixir
-" Enable automatic mix format on save for Elixir files
-let g:mix_format_on_save = 1
 
 " TypeScript/JavaScript specific configurations
 " Enable auto-formatting for TypeScript/JavaScript files
