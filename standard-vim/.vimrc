@@ -26,6 +26,10 @@ Plug 'lambdalisue/vim-fern'
 " Wayland clipboard support
 Plug 'jasonccox/vim-wayland-clipboard'
 
+" Elixir language support - syntax highlighting, filetype detection
+Plug 'elixir-editors/vim-elixir'
+" Elixir mix format integration
+Plug 'mhinz/vim-mix-format'
 " Rust language support - enhanced syntax highlighting, rustfmt integration, and Rust-specific commands
 Plug 'rust-lang/rust.vim'
 " Markdown language support - syntax highlighting, folding, and markdown-specific commands
@@ -155,6 +159,22 @@ let g:fern#default_hidden=1
 
 
 
+
+" Elixir LS configuration - uses ELS_VERSION env var set by direnv
+" Full language server config set at runtime so each Vim instance is isolated
+let s:els_version = $ELS_VERSION
+if s:els_version != ''
+  call coc#config('languageserver.elixirLS', {
+    \ 'command': expand('~') . '/.local/lib/elixir-ls/' . s:els_version . '/language_server.sh',
+    \ 'filetypes': ['elixir', 'eelixir'],
+    \ 'rootPatterns': ['mix.exs'],
+    \ 'settings': { 'elixirLS': { 'dialyzerEnabled': v:true, 'fetchDeps': v:false } }
+    \ })
+endif
+
+" Auto-formatting configuration for Elixir
+" Enable automatic mix format on save for Elixir files
+let g:mix_format_on_save = 1
 
 " Auto-formatting configuration for Rust
 " Enable automatic rustfmt on save for Rust files
