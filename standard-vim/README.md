@@ -85,3 +85,57 @@ The `coc-settings.json` includes optimized TypeScript/JavaScript settings:
 - ESLint auto-fix on save
 - Prettier formatting preferences
 - Format-on-save for web development file types
+
+### Elixir
+
+This configuration includes Elixir development support via ElixirLS, configured per-project using direnv.
+
+#### Features
+- **IntelliSense**: Auto-completion, function signatures via ElixirLS
+- **Diagnostics**: Inline errors and warnings including Dialyzer analysis
+- **Formatting**: Auto `mix format` on save
+- **Syntax Highlighting**: Via vim-elixir plugin
+
+#### Setup
+
+1. Download an ElixirLS release from https://github.com/elixir-lsp/elixir-ls/releases and extract it:
+
+   ```bash
+   # Example for version 0.30.0
+   mkdir -p ~/.local/lib/elixir-ls/0.30.0
+   cd ~/.local/lib/elixir-ls/0.30.0
+   # Extract the release archive here
+   chmod +x language_server.sh
+   ```
+
+2. Install [direnv](https://direnv.net/) and hook it into your shell.
+
+3. In each Elixir project, create a `.envrc` file that sets the ElixirLS version:
+
+   ```bash
+   # ~/Projects/my-elixir-project/.envrc
+   export ELS_VERSION=0.30.0
+   ```
+
+4. Allow direnv for the project:
+
+   ```bash
+   cd ~/Projects/my-elixir-project
+   direnv allow
+   ```
+
+5. Open Vim from the project directory so direnv sets `ELS_VERSION` before Vim starts:
+
+   ```bash
+   cd ~/Projects/my-elixir-project
+   vim .
+   ```
+
+#### How It Works
+
+ElixirLS is configured dynamically at Vim startup via `coc#config()` in `.vimrc`, using the `ELS_VERSION` environment variable to resolve the path to `~/.local/lib/elixir-ls/{version}/language_server.sh`. This means each Vim instance gets its own isolated ElixirLS version based on the project's `.envrc`, allowing different projects to use different ElixirLS versions concurrently without conflicts.
+
+#### Important Notes
+- **Do not install `coc-elixir`** — it bundles its own outdated ElixirLS and will override the per-project configuration.
+- Always `cd` into the project directory before launching Vim, so direnv exports `ELS_VERSION`.
+- ElixirLS compiles itself on first run via `Mix.install`. The first startup may take a few minutes.
